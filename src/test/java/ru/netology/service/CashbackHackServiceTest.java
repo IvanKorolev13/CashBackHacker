@@ -11,7 +11,8 @@ public class CashbackHackServiceTest {
         CashbackHackService service = new CashbackHackService();
         int amountPurchase = 1;
 
-        assertEquals(service.remain(amountPurchase), 999);
+        int expected = 999;
+        assertEquals(service.remain(amountPurchase), expected);
     }
 
     @Test
@@ -19,7 +20,8 @@ public class CashbackHackServiceTest {
         CashbackHackService service = new CashbackHackService();
         int amountPurchase = 999;
 
-        assertEquals(service.remain(amountPurchase), 1);
+        int expected = 1;
+        assertEquals(service.remain(amountPurchase), expected);
     }
 
     @Test
@@ -27,7 +29,8 @@ public class CashbackHackServiceTest {
         CashbackHackService service = new CashbackHackService();
         int amountPurchase = 1000;
 
-        assertEquals(service.remain(amountPurchase), 0);
+        int expected = 0;
+        assertEquals(service.remain(amountPurchase), expected);
     }
 
     @Test
@@ -35,7 +38,8 @@ public class CashbackHackServiceTest {
         CashbackHackService service = new CashbackHackService();
         int amountPurchase = 1001;
 
-        assertEquals(service.remain(amountPurchase), 999);
+        int expected = 999;
+        assertEquals(service.remain(amountPurchase), expected);
     }
 
     @Test
@@ -43,9 +47,11 @@ public class CashbackHackServiceTest {
         CashbackHackService service = new CashbackHackService();
         int amountPurchase = 0;
 
+        int expected = 1000;
         //не запланировано выброс исключения при нулевой сумме или валидация на сумму покупки
-        assertEquals(service.remain(amountPurchase), 1000);
+        assertEquals(service.remain(amountPurchase), expected);
     }
+
     @Ignore
     @Test
     public void testNegativeAmount() {
@@ -59,8 +65,9 @@ public class CashbackHackServiceTest {
     @Test
     public void testMostPurchase() {
         CashbackHackService service = new CashbackHackService();
-        int amountPurchase = 2_147_483_001;
+        int amountPurchase = 2_147_483_437;
 
-        assertEquals(service.remain(amountPurchase), 999);
+        int expected = 563;
+        assertEquals(service.remain(amountPurchase), expected);
     }
 }
